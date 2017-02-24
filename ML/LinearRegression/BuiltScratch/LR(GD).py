@@ -1,4 +1,5 @@
-
+import numpy as np
+import matplotlib.pyplot as plt
 from csv import reader
 #Load a file and store the data
 def loadCSV(filename):
@@ -30,22 +31,49 @@ def getData(data):
             else:
                 example.append(data[row][col])
         x.append(example)
+    x=np.c_[np.ones(len(x)),x]
+    y=np.asarray(y)
     return x,y
 
 #find hypothsis(prediction value)
-def predict(row,weights):
-    output=weights[0]
-    for i in range(len(row)):
-        output+=weights[i+1]*row[i]
-    return output
+def predict(x,weights):
+    return x.dot(weights)
 
+#loop over all examples and find error
+def GD(x,y,lrate,epochs):
+    W=np.random.uniform(size=x.shape[1],)
+    for i in range(epochs):
 
+        predicted=predict(x,W)
 
+        error=predicted-y
 
+        totalerror=np.sum(error**2)
+
+        gradient=x.T.dot(error)/4
+        print(totalerror)
+        W+=-lrate*gradient
+    return W
+
+def showPlot(x,y):
+    plt.figure()
+    plt.scatter(x[:, 1], y, marker="o", c=y)
+    plt.plot(x, y, "r-")
+    plt.show()
 
 filename='C:/Users/Madhu/Desktop/Book1.csv'
 data=loadCSV(filename)
 convertToFloat(data)
-print(data)
 x,y=getData(data)
-print(x)
+print(x,y)
+
+weight=GD(x,y,0.002,90000)
+print(weight)
+input=[10,2]
+out=weight[0]
+for i in range(len(input)):
+    out+=weight[i+1]*input[i]
+
+print(out)
+
+showPlot(x,y)
