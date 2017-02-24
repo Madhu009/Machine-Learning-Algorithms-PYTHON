@@ -14,7 +14,7 @@ def sigmoid_activation(x):
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-e", "--epochs", type=float, default=100,
+ap.add_argument("-e", "--epochs", type=float, default=10000,
 	help="# of epochs")
 ap.add_argument("-a", "--alpha", type=float, default=0.01,
 	help="learning rate")
@@ -44,7 +44,7 @@ print(W)
 # initialize a list to store the loss value for each epoch
 lossHistory = []
 
-# loop over the desired number of epochs
+# loop over the desired nu mber of epochs
 for epoch in np.arange(0, args["epochs"]):
 # take the dot product between our features `X` and the
 # weight matrix `W`, then pass this value through the

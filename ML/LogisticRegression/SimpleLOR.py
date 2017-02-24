@@ -8,4 +8,4 @@ x,y=iris.data[:-1:],iris.target[:-1]
 logist=LogisticRegression()
 logist.fit(x,y)
 
-print(logist.predict(iris.data[-1,:]).reshape(x.shape))
+print(logist.predict(iris.data[-1,:]))

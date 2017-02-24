@@ -50,16 +50,10 @@ def GD(x,y,lrate,epochs):
 
         totalerror=np.sum(error**2)
 
-        gradient=x.T.dot(error)/4
+        gradient=x.T.dot(error)/x.shape[0]
         print(totalerror)
         W+=-lrate*gradient
     return W
-
-def showPlot(x,y):
-    plt.figure()
-    plt.scatter(x[:, 1], y, marker="o", c=y)
-    plt.plot(x, y, "r-")
-    plt.show()
 
 filename='C:/Users/Madhu/Desktop/Book1.csv'
 data=loadCSV(filename)
@@ -67,13 +61,11 @@ convertToFloat(data)
 x,y=getData(data)
 print(x,y)
 
-weight=GD(x,y,0.002,90000)
+weight=GD(x,y,0.001,50000)
 print(weight)
-input=[10,2]
+input=[10,5]
 out=weight[0]
 for i in range(len(input)):
     out+=weight[i+1]*input[i]
 
 print(out)
-
-showPlot(x,y)
