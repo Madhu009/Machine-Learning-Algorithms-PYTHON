@@ -103,6 +103,12 @@ def trainNetwork(network,data,lrate,epoch,n_outputs):
             updateWeights(network,row,lrate)
         print('>epoch=%d,error=%.3f'%(i,sum_error))
 
+
+# Make a prediction with a network
+def predict(network, row):
+    outputs = feedForward(network, row)
+    return outputs.index(max(outputs))
+
 print("final")
 # Test training backprop algorithm
 seed(1)
@@ -121,4 +127,9 @@ n_outputs = len(set([row[-1] for row in dataset]))
 network = initializeNetwork(n_inputs, 2, n_outputs)
 trainNetwork(network, dataset, 0.5, 20, n_outputs)
 for layer in network:
-	print(layer)
+    print(layer)
+
+for row in dataset:
+	prediction = predict(network, row)
+	print('Expected=%d, Got=%d' % (row[-1], prediction))
+
