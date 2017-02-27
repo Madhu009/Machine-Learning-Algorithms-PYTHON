@@ -1,12 +1,13 @@
 # Create first network with Keras
 from keras.models import Sequential
 from keras.layers import Dense
+from keras.wrappers.scikit_learn import KerasClassifier
 import numpy as np
 
 # fix random seed for reproducibility
 seed = 7
 np.random.seed(seed)
-
+ 
 
 #Load data
 dataset=np.loadtxt("C:/Users/Madhu/Desktop/pima.txt",delimiter=',')
