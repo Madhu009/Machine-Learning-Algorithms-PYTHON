@@ -45,9 +45,21 @@ print("Baseline: %.2f%% (%.2f%%)" % (results.mean()*100, results.std()*100))'''
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, ActualY, test_size=0.33, random_state=7)
 
+li=list()
+li.append([5.1,3.7,1.5,0.4])
+listnparray=np.array(li)
+print(listnparray)
+
 estimator.fit(X_train, Y_train)
-predictions = estimator.predict(X_test)
+predictions = estimator.predict(listnparray)
 print(predictions)
 print(encode.inverse_transform(predictions))
+
+
+
+
+
+
+
 
 
