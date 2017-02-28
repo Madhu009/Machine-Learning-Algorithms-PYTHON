@@ -26,9 +26,12 @@ def createModel():
     model=Sequential()
     model.add(Convolution2D(32,5,5,border_mode='valid',input_shape=(1,28,28),activation='relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
+    model.add(Convolution2D(15,3,3,activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.2))
     model.add(Flatten())
     model.add(Dense(128,activation='relu'))
+    model.add(Dense(50, activation='relu'))
     model.add(Dense(numClasses,activation='softmax'))
 
     #Compile the model
@@ -47,6 +50,6 @@ print("Baseline Error: %.2f%%" % (100-scores[1]*100))
 #Save the model
 
 saveJson=model.to_json()
-with open('C:/Users/Madhu/Desktop/KerasModel/CNN/Digit.json','w') as file:
+with open('C:/Users/Madhu/Desktop/KerasModel/CNN/LargeCNNDigit.json','w') as file:
     file.write(saveJson)
-model.save_weights('C:/Users/Madhu/Desktop/KerasModel/CNN/Digit.h5')
+model.save_weights('C:/Users/Madhu/Desktop/KerasModel/CNN/LargeCNNDigit.h5')
