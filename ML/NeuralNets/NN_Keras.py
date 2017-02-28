@@ -3,6 +3,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.wrappers.scikit_learn import KerasClassifier
 import numpy as np
+from keras.models import model_from_json
 
 # fix random seed for reproducibility
 seed = 7
@@ -37,3 +38,11 @@ print(predictions)
 # round predictions
 rounded = [round(x[0]) for x in predictions]
 print(rounded)
+
+#Save the model
+modelJSON=model.to_json()
+with open('C:/Users/Madhu/Desktop/pima.json','w') as jsonfile:
+    jsonfile.write(modelJSON)
+
+model.save_weights('C:/Users/Madhu/Desktop/pima.h5')
+
