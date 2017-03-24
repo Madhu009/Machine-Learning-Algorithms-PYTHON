@@ -9,12 +9,13 @@ import re
 
 #1.Read the data file
 
-train=pd.read_csv('.csv',header=0,delimiter="\t",quoting=3)
-test=pd.read_csv('.csv',header=0,delimiter="\t",quoting=3)
-print(train["review"][0])
+train=pd.read_csv('C:/Users/Madhu/Desktop/NLP/train.tsv',header=0,
+                  delimiter="\t",quoting=3)
+test=pd.read_csv('C:/Users/Madhu/Desktop/NLP/test.tsv',header=0,delimiter="\t",
+                 quoting=3)
+print(train["SentenceId"])
 
-
-
+'''
 def review_to_wordlist(review, remove_stopwords=False):
     # Function to convert a document to a sequence of words,
     # optionally removing stop words.  Returns a list of words.
@@ -76,3 +77,4 @@ output=pd.DataFrame(data={"id":test["id"],"sentiment":result})
 
 print(output)
 
+'''
